@@ -30,7 +30,6 @@ class HashMap {
             this.increaseBuckets();
         }
         const bucket = this.hash(key);
-        // To add has function
         if (!this.has(key)) {
             const newNode = new Node(key, value);
             if (this.buckets[bucket] === null) {
@@ -60,6 +59,18 @@ class HashMap {
         }
         if (current === null) return null;
         return current.key;
+    }
+
+    has(key) {
+        const bucket = this.hash(key);
+        let current = this.buckets[bucket];
+        while (current !== null) {
+            if (current.key === key) {
+                return true;
+            }
+            current = current.nextNode;
+        }
+        return false;
     }
 }
 
