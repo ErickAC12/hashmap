@@ -102,6 +102,21 @@ class HashMap {
         this.buckets = new Array(16).fill(null);
         this.stored = 0;
     }
+
+    keys() {
+        const keysArray = [];
+        this.buckets.forEach((bucket) => {
+            let current = bucket;
+            if (bucket !== null) {
+                keysArray.push(current.key);
+                while (current.nextNode !== null) {
+                    current = current.nextNode;
+                    keysArray.push(current.key);
+                }
+            }
+        });
+        return keysArray;
+    }
 }
 
 // if (index < 0 || index >= buckets.length) {
