@@ -24,9 +24,23 @@ class HashMap {
         return hashCode % this.buckets.length;
     }
 
+    increaseBuckets() {
+        const prevBuckets = this.buckets;
+        this.capacity *= 2;
+        this.buckets = new Array(this.capacity).fill(null);
+        this.stored = 0;
+
+        prevBuckets.forEach((bucket) => {
+            let current = bucket;
+            while (current !== null) {
+                this.set(current.key, current.value);
+                current = current.nextNode;
+            }
+        });
+    }
+
     set(key, value) {
         if (this.stored >= this.capacity * this.loadFactor) {
-            // To add increaseBuckets function
             this.increaseBuckets();
         }
         const bucket = this.hash(key);
