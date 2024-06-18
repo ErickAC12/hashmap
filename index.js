@@ -72,6 +72,27 @@ class HashMap {
         }
         return false;
     }
+
+    remove(key) {
+        const bucket = this.hash(key);
+        let current = this.buckets[bucket];
+        let previous = null;
+
+        while (current !== null && current.key !== key) {
+            previous = current;
+            current = current.nextNode;
+        }
+
+        if (current === null) return false;
+
+        if (previous === null) {
+            this.buckets[bucket] = current.nextNode;
+        } else {
+            previous.nextNode = current.nextNode;
+        }
+        this.stored -= 1;
+        return true;
+    }
 }
 
 // if (index < 0 || index >= buckets.length) {
