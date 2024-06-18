@@ -117,6 +117,21 @@ class HashMap {
         });
         return keysArray;
     }
+
+    values() {
+        const valuesArray = [];
+        this.buckets.forEach((bucket) => {
+            let current = bucket;
+            if (bucket !== null) {
+                valuesArray.push(current.value);
+                while (current.nextNode !== null) {
+                    current = current.nextNode;
+                    valuesArray.push(current.value);
+                }
+            }
+        });
+        return valuesArray;
+    }
 }
 
 // if (index < 0 || index >= buckets.length) {
