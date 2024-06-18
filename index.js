@@ -132,6 +132,21 @@ class HashMap {
         });
         return valuesArray;
     }
+
+    entries() {
+        const entriesArray = [];
+        this.buckets.forEach((bucket) => {
+            let current = bucket;
+            if (bucket !== null) {
+                entriesArray.push([current.key, current.value]);
+                while (current.nextNode !== null) {
+                    current = current.nextNode;
+                    entriesArray.push([current.key, current.value]);
+                }
+            }
+        });
+        return entriesArray;
+    }
 }
 
 // if (index < 0 || index >= buckets.length) {
