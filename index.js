@@ -93,6 +93,15 @@ class HashMap {
         this.stored -= 1;
         return true;
     }
+
+    length() {
+        return this.stored;
+    }
+
+    clear() {
+        this.buckets = new Array(16).fill(null);
+        this.stored = 0;
+    }
 }
 
 // if (index < 0 || index >= buckets.length) {
