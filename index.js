@@ -51,6 +51,16 @@ class HashMap {
             current.value = value;
         }
     }
+
+    get(key) {
+        const bucket = this.hash(key);
+        let current = this.buckets[bucket];
+        while (current !== null && current.key !== key) {
+            current = current.nextNode;
+        }
+        if (current === null) return null;
+        return current.key;
+    }
 }
 
 // if (index < 0 || index >= buckets.length) {
